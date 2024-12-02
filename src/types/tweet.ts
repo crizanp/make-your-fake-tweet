@@ -1,4 +1,4 @@
-export type TweetTheme = "light" | "dark" | "dim";
+export type TweetTheme =  "dark" | "dim";
 
 export type Tweet = {
   avatar?: string;

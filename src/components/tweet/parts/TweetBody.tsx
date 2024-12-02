@@ -1,3 +1,4 @@
+import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { useTweet } from "@/hooks/useTweet";
 
@@ -13,18 +14,69 @@ export interface TweetBodyProps {
 }
 
 const TweetBody = () => {
-  const { tweet } = useTweet();
+  const { tweet, updateTweet } = useTweet();
   const { body, image, viewsCount, publishTime, publishDate }: TweetBodyProps =
     tweet;
 
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [isEditing, setIsEditing] = useState(false); // Toggle edit mode
+
   const formattedViewsCount = nFormatter(viewsCount!);
+
+  // Handle new lines and auto-expand height
+  const adjustTextareaHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto"; // Reset height to auto
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // Adjust height to content
+    }
+  };
+
+  const handleBodyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    updateTweet({ body: e.target.value });
+    adjustTextareaHeight();
+  };
+
+  // Adjust height when editing mode starts
+  useEffect(() => {
+    if (isEditing) {
+      adjustTextareaHeight();
+    }
+  }, [isEditing]);
+
+  // Auto-expand on component mount for existing content
+  useEffect(() => {
+    if (textareaRef.current) {
+      adjustTextareaHeight();
+    }
+  }, [body]);
+
+  // Highlight hashtags
+  const highlightHashtags = (text: string) => {
+    return text.replace(/#(\w+)/g, '<span class="text-blue-500">#$1</span>');
+  };
 
   return (
     <div className="flex flex-col">
-      {/* Tweet Text */}
-      <div className="mb-3 text-lg font-normal text-white">
-        {body || tweetBodyDefaults.body}
-      </div>
+      {/* Toggle between edit mode and display mode */}
+      {isEditing ? (
+        <textarea
+          ref={textareaRef}
+          value={body || tweetBodyDefaults.body}
+          onChange={handleBodyChange}
+          onBlur={() => setIsEditing(false)} // Exit edit mode on blur
+          placeholder="What's happening?"
+          rows={1}
+          className="mb-3 w-full resize-none overflow-hidden border-none bg-transparent text-lg font-normal text-white outline-none focus:ring-0"
+        />
+      ) : (
+        <div
+          onClick={() => setIsEditing(true)} // Enter edit mode on click
+          className="mb-3 w-full cursor-pointer whitespace-pre-wrap bg-transparent text-lg font-normal text-white outline-none"
+          dangerouslySetInnerHTML={{
+            __html: highlightHashtags(body || tweetBodyDefaults.body),
+          }}
+        ></div>
+      )}
 
       {/* Optional Image */}
       {image && (

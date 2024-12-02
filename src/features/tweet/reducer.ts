@@ -16,7 +16,7 @@ export const initTweet: Tweet = {
   bookmarksCount: 0,
 };
 
-export const initTweetTheme: TweetTheme = "light";
+export const initTweetTheme: TweetTheme = "dark";
 
 export const initTweetState: TweetState = {
   tweet: initTweet,

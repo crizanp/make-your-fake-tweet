@@ -1,22 +1,37 @@
-import { CgDanger } from "react-icons/cg";
+import { useState } from "react";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 
 const TweetDisclaimer = () => {
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
+
+  const toggleDisclaimer = () => {
+    setShowDisclaimer(!showDisclaimer);
+  };
+
   return (
-    <div className="tooltip-container">
-      <span className="danger-sign">
-        <CgDanger />
+    <div className="relative flex items-center">
+      {/* Icon with hover/click functionality */}
+      <span
+        className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-blue-600 text-white"
+        onClick={toggleDisclaimer}
+        onMouseEnter={() => setShowDisclaimer(true)}
+        onMouseLeave={() => setShowDisclaimer(false)}
+      >
+        <AiOutlineInfoCircle size={20} />
       </span>
-      <div className="tooltip">
-        <p>
-          <strong>Disclaimer:</strong> This tool is intended for entertainment
-          and educational purposes only. The generated fake tweets should not be
-          used to impersonate or deceive others. The creators of this
-          application are not responsible for any misuse or consequences that
-          may arise from the use of the generated content. Users are encouraged
-          to use this tool responsibly and in compliance with all applicable
-          laws and regulations.
-        </p>
-      </div>
+
+      {/* Tooltip-style Disclaimer */}
+      {showDisclaimer && (
+        <div className="absolute left-12 top-0 z-10 w-64 rounded-lg bg-gray-800 p-4 text-gray-300 shadow-md">
+          <p className="text-sm">
+            <strong className="text-white">Note:</strong> This tool is designed
+            for creative expression and mock-up generation. Avoid sharing
+            generated tweets in ways that could mislead, harm, or violate
+            policies. Your use of this tool should adhere to ethical and legal
+            standards.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

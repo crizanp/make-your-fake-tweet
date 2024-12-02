@@ -23,7 +23,7 @@ const RadioInput = (props: RadioInputProps) => {
         <label
           key={option.id}
           htmlFor={option.value}
-          className="flex items-center gap-2 text-gray-300"
+          className="flex items-center gap-2 text-gray-600"
         >
           <input
             id={option.value}

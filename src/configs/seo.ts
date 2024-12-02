@@ -26,7 +26,7 @@ export const rootMetadata: Metadata = {
   ],
   creator: "crizanp",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
+    // { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "white" },
   ],
   openGraph: {

@@ -13,7 +13,6 @@ export const tweetBodyDefaults = {
 };
 
 export const twitterThemes: Record<TweetTheme, string> = {
-  light: "text-black",
   dark: "text-white",
   dim: "#15202b",
 };

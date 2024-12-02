@@ -32,20 +32,20 @@ const TweetPreview = () => {
     <div className="order-1 mx-auto w-full lg:order-2">
       <div
         className={cn(
-          "mx-auto flex w-full max-w-2xl flex-col items-center gap-4 rounded border bg-gray-600 py-4 shadow-md",
+          "mx-auto flex w-full max-w-2xl flex-col items-center gap-4 rounded border border-black bg-white py-4",
           "lg:px-4"
         )}
       >
         <div className="flex flex-col items-center gap-2">
-          <h2 className="text-3xl font-bold text-cyan-400">Tweet Preview</h2>
-          <p className="text-sm text-gray-400">
+          <h2 className="text-3xl font-bold text-gray-800">Tweet Preview</h2>
+          <p className="text-sm text-gray-500">
             Customize your tweet and see how it looks.
           </p>
         </div>
 
         {/* Theme Selector */}
         <div className="flex flex-col items-center gap-4">
-          <span className="text-sm font-medium text-gray-300">
+          <span className="text-sm font-medium text-gray-500">
             Select a Theme:
           </span>
           <RadioInput
@@ -60,7 +60,7 @@ const TweetPreview = () => {
         <div
           ref={componentRef}
           className={cn("mx-auto w-full border p-4", {
-            "border-gray-300 bg-gray-100 text-gray-900": theme === "light",
+            // "border-gray-300 bg-gray-100 text-gray-900": theme === "light",
             "border-gray-700 bg-black text-white": theme === "dark",
             "border-gray-600 bg-gray-800 text-gray-200": theme === "dim",
           })}
