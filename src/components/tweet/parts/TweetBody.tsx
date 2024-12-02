@@ -18,38 +18,43 @@ const TweetBody = () => {
     tweet;
 
   const formattedViewsCount = nFormatter(viewsCount!);
+
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col gap-3">
-        <div dir="auto" className="text-[17px] font-normal">
-          {body ? body : tweetBodyDefaults.body}
-        </div>
-        {image && (
+      {/* Tweet Text */}
+      <div className="mb-3 text-lg font-normal text-white">
+        {body || tweetBodyDefaults.body}
+      </div>
+
+      {/* Optional Image */}
+      {image && (
+        <div className="max-h-[500px] overflow-hidden rounded-xl">
           <Image
             src={image}
-            alt="image"
+            alt="Tweet Image"
             width={0}
             height={0}
             sizes="100%"
-            className="max-h-[500px] w-full rounded-xl object-cover"
+            className="w-full object-cover"
           />
-        )}
-      </div>
-      <div className="my-4 flex h-[20px] items-center gap-1">
-        <time className="text-sm font-normal text-gray-500">
-          {publishTime ? publishTime : tweetBodyDefaults.publishTime}
-          {publishDate
-            ? ` · ${publishDate}`
-            : ` · ${tweetBodyDefaults.publishDate}`}
+        </div>
+      )}
+
+      {/* Timestamp and Views */}
+      <div className="mt-3 flex items-center gap-2 text-sm text-gray-400">
+        <time>
+          {publishTime || tweetBodyDefaults.publishTime}
+          {` · `}
+          {publishDate || tweetBodyDefaults.publishDate}
         </time>
-        {!!viewsCount && (
+        {viewsCount !== undefined && (
           <>
-            <span className="text-sm font-normal text-gray-500">·</span>
+            <span>·</span>
             <span>
-              <span className="text-sm font-semibold">
+              <span className="font-bold text-white">
                 {formattedViewsCount}
               </span>
-              <span className="text-sm font-normal text-gray-500">
+              <span className="ml-1 text-gray-400">
                 {` View${viewsCount > 1 ? "s" : ""}`}
               </span>
             </span>

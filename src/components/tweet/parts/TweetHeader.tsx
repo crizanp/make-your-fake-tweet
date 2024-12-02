@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import { useTweet } from "@/hooks/useTweet";
 
 import { BsThreeDots } from "react-icons/bs";
@@ -17,31 +16,32 @@ export interface TweetHeaderProps {
 const TweetHeader = () => {
   const { tweet } = useTweet();
   const { avatar, name, username, verified }: TweetHeaderProps = tweet;
+
   return (
-    <div className="mb-4 flex justify-between">
+    <div className="mb-3 flex justify-between">
       <div className="flex items-center gap-3">
-        <div className="h-10 w-10 rounded-full">
+        <div className="h-12 w-12 overflow-hidden rounded-full">
           <Image
             src={avatar ? avatar : tweetHeaderDefaults.avatar}
             alt="avatar"
-            width={400}
-            height={400}
-            className="h-10 w-10 rounded-full object-cover"
+            width={48}
+            height={48}
+            className="object-cover"
           />
         </div>
         <div className="flex flex-col">
           <div className="flex items-center gap-1">
-            <span className="text-sm font-bold">
+            <span className="text-base font-bold text-white">
               {name ? name : tweetHeaderDefaults.name}
             </span>
-            {verified && <VerifiedIcon />}
+            {verified && <VerifiedIcon className="h-5 w-5 text-blue-500" />}
           </div>
-          <span className="text-sm font-normal text-gray-500">
-            @{username ? `${username}` : tweetHeaderDefaults.username}
+          <span className="text-sm text-gray-400">
+            @{username ? username : tweetHeaderDefaults.username}
           </span>
         </div>
       </div>
-      <BsThreeDots />
+      <BsThreeDots className="cursor-pointer text-gray-400 hover:text-gray-300" />
     </div>
   );
 };

@@ -32,26 +32,37 @@ const TweetPreview = () => {
     <div className="order-1 mx-auto w-full lg:order-2">
       <div
         className={cn(
-          "mx-auto flex w-full max-w-2xl flex-col items-center gap-4 rounded border bg-white py-4 shadow-md",
+          "mx-auto flex w-full max-w-2xl flex-col items-center gap-4 rounded border bg-gray-600 py-4 shadow-md",
           "lg:px-4"
         )}
       >
-        <h2 className="w-full text-center text-2xl font-bold">Tweet Preview</h2>
-        <div className="flex w-full gap-4 px-2 lg:px-0">
-          <div className="text-base font-medium">Tweet Theme :</div>
+        <div className="flex flex-col items-center gap-2">
+          <h2 className="text-3xl font-bold text-cyan-400">Tweet Preview</h2>
+          <p className="text-sm text-gray-400">
+            Customize your tweet and see how it looks.
+          </p>
+        </div>
+
+        {/* Theme Selector */}
+        <div className="flex flex-col items-center gap-4">
+          <span className="text-sm font-medium text-gray-300">
+            Select a Theme:
+          </span>
           <RadioInput
             selected={theme}
             options={twitterThemeOptions}
             onChange={handleThemeChange}
-            className="w-min gap-4"
+            className="gap-6"
           />
         </div>
+
+        {/* Tweet Preview Section */}
         <div
           ref={componentRef}
-          className={cn("w-full border-[1px] p-4", {
-            "border-[#eff3f4] bg-white text-black": theme === "light",
-            "border-[#2f3336] bg-black text-white": theme === "dark",
-            "border-[#2f3336] bg-[#15202b] text-white": theme === "dim",
+          className={cn("mx-auto w-full border p-4", {
+            "border-gray-300 bg-gray-100 text-gray-900": theme === "light",
+            "border-gray-700 bg-black text-white": theme === "dark",
+            "border-gray-600 bg-gray-800 text-gray-200": theme === "dim",
           })}
         >
           {/* Tweet header */}

@@ -28,22 +28,21 @@ const TweetFooter = () => {
   }: TweetFooterProps = tweet;
 
   return (
-    <div>
-      <div
-        className={cn(
-          "flex h-[48px] items-center justify-between border-b border-t px-1",
-          {
-            "border-b-[#eff3f4] border-t-[#eff3f4]": theme === "light",
-            "border-b-[#2f3336] border-t-[#2f3336]": theme !== "light",
-          }
-        )}
-      >
-        <TweetStat icon={<CommentIcon />} count={repliesCount} />
-        <TweetStat icon={<RepostIcon />} count={repostsCount} />
-        <TweetStat icon={<LikeIcon />} count={likesCount} />
-        <TweetStat icon={<BookmarkIcon />} count={bookmarksCount} />
-        <ShareIcon />
-      </div>
+    <div className="mt-4 flex justify-between text-gray-400">
+      <TweetStat
+        icon={<CommentIcon className="h-5 w-5" />}
+        count={repliesCount}
+      />
+      <TweetStat
+        icon={<RepostIcon className="h-5 w-5" />}
+        count={repostsCount}
+      />
+      <TweetStat icon={<LikeIcon className="h-5 w-5" />} count={likesCount} />
+      <TweetStat
+        icon={<BookmarkIcon className="h-5 w-5" />}
+        count={bookmarksCount}
+      />
+      <ShareIcon className="h-5 w-5" />
     </div>
   );
 };
