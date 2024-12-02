@@ -1,5 +1,4 @@
 import React from "react";
-
 import { cn } from "@/utils";
 
 export interface RadioOption {
@@ -17,13 +16,14 @@ export interface RadioInputProps {
 
 const RadioInput = (props: RadioInputProps) => {
   const { selected, options, onChange, className } = props;
+
   return (
-    <div className={cn("flex w-full items-center justify-around", className)}>
+    <div className={cn("flex w-full flex-wrap gap-4", className)}>
       {options.map((option) => (
         <label
           key={option.id}
           htmlFor={option.value}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 text-gray-300"
         >
           <input
             id={option.value}
@@ -31,6 +31,7 @@ const RadioInput = (props: RadioInputProps) => {
             value={option.value}
             checked={selected === option.value}
             onChange={onChange}
+            className="h-4 w-4 cursor-pointer accent-cyan-500"
           />
           <span>{option.label}</span>
         </label>

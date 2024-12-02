@@ -32,7 +32,11 @@ const TweetForm = () => {
   };
 
   return (
-    <div className={cn("w-full max-w-lg rounded-lg bg-gray-900 p-6 text-white shadow-lg")}>
+    <div
+      className={cn(
+        "w-full max-w-lg rounded-lg bg-gray-900 p-6 text-white shadow-lg"
+      )}
+    >
       <div className="mb-4 flex items-center gap-4 border-b border-gray-700 pb-2">
         <button
           className={cn(
@@ -66,7 +70,7 @@ const TweetForm = () => {
               type="file"
               accept="image/*"
               placeholder="Upload Profile Picture"
-              InputClass="hidden"
+              inputClass="hidden"
               onChange={(e) => handleImageChange("avatar", e)}
             >
               <label
@@ -96,7 +100,7 @@ const TweetForm = () => {
                 name: e.target.value,
               })
             }
-            InputClass="text-black" // Set text color to black
+            inputClass="text-white" // Set text color to white
           />
           <InputField
             type="text"
@@ -111,7 +115,7 @@ const TweetForm = () => {
                 username: e.target.value,
               })
             }
-            InputClass="text-black" // Set text color to black
+            inputClass="text-white" // Set text color to white
           />
           <label className="flex items-center gap-2">
             <InputField
@@ -122,25 +126,25 @@ const TweetForm = () => {
             <span>Show Verified Badge</span>
           </label>
           <div className="custom-textarea-wrapper">
-  <TextareaField
-    label="What's happening?"
-    placeholder={tweetBodyDefaults.body}
-    tooltip={`${tweet.body ? tweet.body.length : 0}/280 characters`}
-    value={tweet.body}
-    onChange={(e) =>
-      updateTweet({
-        body: e.target.value,
-      })
-    }
-  />
-</div>
+            <TextareaField
+              label="What's happening?"
+              placeholder={tweetBodyDefaults.body}
+              tooltip={`${tweet.body ? tweet.body.length : 0}/280 characters`}
+              value={tweet.body}
+              onChange={(e) =>
+                updateTweet({
+                  body: e.target.value,
+                })
+              }
+            />
+          </div>
 
           <div className="flex items-center gap-4">
             <InputField
               id="tweet-image"
               type="file"
               accept="image/*"
-              InputClass="hidden"
+              inputClass="hidden"
               onChange={(e) => handleImageChange("image", e)}
             >
               <label
@@ -170,7 +174,7 @@ const TweetForm = () => {
                 publishTime: e.target.value,
               })
             }
-            InputClass="text-black" // Set text color to black
+            inputClass="text-white" // Set text color to white
           />
           <InputField
             type="text"
@@ -183,32 +187,37 @@ const TweetForm = () => {
                 publishDate: e.target.value,
               })
             }
-            InputClass="text-black" // Set text color to black
+            inputClass="text-white" // Set text color to white
           />
         </div>
       )}
 
       {activeTab === "stats" && (
         <div className="flex flex-wrap gap-4">
-          {(["repliesCount", "repostsCount", "likesCount", "bookmarksCount"] as const).map(
-            (field) => (
-              <InputField
-                key={field}
-                type="number"
-                label={field.replace("Count", "")}
-                placeholder="0"
-                containerClass="w-1/2"
-                value={tweet[field]}
-                onChange={(e) =>
-                  updateTweet({
-                    [field]: parseInt(e.target.value),
-                  })
-                }
-                InputClass="text-black" // Set text color to black
-                min={0}
-              />
-            )
-          )}
+          {(
+            [
+              "repliesCount",
+              "repostsCount",
+              "likesCount",
+              "bookmarksCount",
+            ] as const
+          ).map((field) => (
+            <InputField
+              key={field}
+              type="number"
+              label={field.replace("Count", "")}
+              placeholder="0"
+              containerClass="w-1/2"
+              value={tweet[field]}
+              onChange={(e) =>
+                updateTweet({
+                  [field]: parseInt(e.target.value),
+                })
+              }
+              inputClass="text-white" // Set text color to white
+              min={0}
+            />
+          ))}
           <InputField
             type="number"
             label="Views Count"
@@ -220,7 +229,7 @@ const TweetForm = () => {
                 viewsCount: parseInt(e.target.value),
               })
             }
-            InputClass="text-black" // Set text color to black
+            inputClass="text-white" // Set text color to white
             min={0}
           />
         </div>

@@ -22,19 +22,24 @@ const TextareaField = (props: TextareaFieldProps) => {
     className = "",
     ...otherProps
   } = props;
+
   return (
-    <div className={cn("flex w-full flex-col gap-1", containerClass)}>
+    <div className={cn("flex w-full flex-col gap-2", containerClass)}>
       {label && (
-        <label className={cn("text-base font-medium", labelClass)}>
+        <label htmlFor={id} className={cn("text-sm text-gray-300", labelClass)}>
           {label}
         </label>
       )}
       <textarea
+        id={id}
         {...otherProps}
-        className={cn("rounded border border-gray-300", textareaClass)}
-      ></textarea>
+        className={cn(
+          "rounded-md bg-gray-800 p-2 text-gray-100 outline-none focus:ring-2 focus:ring-cyan-500",
+          textareaClass
+        )}
+      />
       {tooltip && (
-        <span className={cn("ml-1 text-xs text-gray-500", tooltipClass)}>
+        <span className={cn("text-xs text-gray-400", tooltipClass)}>
           {tooltip}
         </span>
       )}
