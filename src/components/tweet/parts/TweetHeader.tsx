@@ -34,7 +34,11 @@ const TweetHeader = () => {
             <span className="text-base font-bold text-white">
               {name ? name : tweetHeaderDefaults.name}
             </span>
-            {verified && <VerifiedIcon className="h-5 w-5 text-blue-500" />}
+            {verified && (
+              <span className="h-5 w-5 text-blue-500">
+                <VerifiedIcon height={20} width={20} color="#1da1f2" />
+              </span>
+            )}
           </div>
           <span className="text-sm text-gray-400">
             @{username ? username : tweetHeaderDefaults.username}

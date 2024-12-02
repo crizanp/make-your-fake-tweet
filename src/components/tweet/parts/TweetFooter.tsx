@@ -9,8 +9,6 @@ import {
 } from "@/components/Icons";
 import TweetStat from "@/components/tweet/ui/TweetStat";
 
-import { cn } from "@/utils";
-
 export interface TweetFooterProps {
   repliesCount?: number;
   repostsCount?: number;
@@ -19,30 +17,51 @@ export interface TweetFooterProps {
 }
 
 const TweetFooter = () => {
-  const { tweet, theme } = useTweet();
+  const { tweet } = useTweet();
   const {
-    repliesCount,
-    repostsCount,
-    likesCount,
-    bookmarksCount,
+    repliesCount = 0,
+    repostsCount = 0,
+    likesCount = 0,
+    bookmarksCount = 0,
   }: TweetFooterProps = tweet;
 
   return (
     <div className="mt-4 flex justify-between text-gray-400">
       <TweetStat
-        icon={<CommentIcon className="h-5 w-5" />}
+        icon={
+          <div className="h-5 w-5">
+            <CommentIcon height={20} width={20} color="#71767b" />
+          </div>
+        }
         count={repliesCount}
       />
       <TweetStat
-        icon={<RepostIcon className="h-5 w-5" />}
+        icon={
+          <div className="h-5 w-5">
+            <RepostIcon height={20} width={20} color="#71767b" />
+          </div>
+        }
         count={repostsCount}
       />
-      <TweetStat icon={<LikeIcon className="h-5 w-5" />} count={likesCount} />
       <TweetStat
-        icon={<BookmarkIcon className="h-5 w-5" />}
+        icon={
+          <div className="h-5 w-5">
+            <LikeIcon height={20} width={20} color="#71767b" />
+          </div>
+        }
+        count={likesCount}
+      />
+      <TweetStat
+        icon={
+          <div className="h-5 w-5">
+            <BookmarkIcon height={20} width={20} color="#71767b" />
+          </div>
+        }
         count={bookmarksCount}
       />
-      <ShareIcon className="h-5 w-5" />
+      <div className="h-5 w-5">
+        <ShareIcon height={20} width={20} color="#71767b" />
+      </div>
     </div>
   );
 };
